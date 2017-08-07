@@ -2,134 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="referrer" content="never">
   <title>音乐播放器</title>
   <link rel="stylesheet" href="iconfont/iconfont.css">
-  <style>
-      ul,li{
-          list-style: none;
-          margin: 0;
-          padding: 0;
-      }
-      .musicbox{
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background: url(image/2.jpg) center center no-repeat;
-          background-size: cover;
-
-          display: flex;
-          justify-content: center;
-          align-items: center;     
-      }
-      .music{
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 36vh;
-          
-          position: relative;
-          top:12vh;
-      }
-      .cd{
-          width: 36vh;
-          height: 36vh;
-          border-radius: 50%;
-          background: url(image/icon2.png) center center no-repeat;
-          background-size: 100%;
-          z-index: 1;
-      }
-      .music>img{
-          z-index: 1;
-          position: relative;
-          bottom:10vh;
-          left:13vh;
-      }
-      .main{
-          width: 100%;
-          padding: 3vh;
-          padding-top:20vh;
-          background: #D9DADF; 
-          border-radius: 1.5vh;
-          box-shadow: 0vh 0.5vh 1vh 0.2vh #3f357f;
-          color: #595a5e;
-          font-family: "Microsoft YaHei";
-
-          position: relative;
-          bottom:28vh;
-      }
-      .main .info{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-      }
-      .main .info .title{
-          font-size:2.2vh;
-          font-weight: 500;
-          margin-bottom: 0.8vh;
-      }
-      .main .info .auther{
-          font-size: 1.5vh;
-          margin-bottom: 0.6vh;
-      }
-      .main .info .lyric{
-          font-size:1vh;
-          margin-bottom: 2vh;
-          text-align: center;
-      }
-      .progress{
-          width: 100%;
-          margin-bottom: 2vh;
-      }
-      .progress .bar {
-          height: 0.5vh;
-          background-color: rgba(0,0,0,0.2);
-          cursor: pointer;
-      }
-      .progress .progress-now{
-          background-color: #ee8a87;
-          height: 3vh;
-          width: 0;
-          position: relative;
-      }
-      .time{
-          text-align: right;
-      }
-      .control{
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-      }
-      .control .icon-love{
-          position: relative;
-          right: 7.5vh;
-      }
-      .control .icon-share{
-          position: relative;
-          left: 7.5vh;
-      }
-      .control .icon-play{
-          font-size: 3.5vh;
-          padding: 1vh;
-          margin:  0 1.5vh;
-          border:1px solid #cacad2;
-          border-radius: 50%;
-          box-shadow: 0vh 0vh 0vh 0.7vh #d3d4d9;
-          background: #D9DADF;
-      }
-      .control .icon-pre,.icon-next{
-          font-size:2vh;
-          border:1px solid #cacad2;
-          border-radius: 10%;
-          box-shadow: 0vh 0vh 0vh 0.5vh #d3d4d9;
-          padding: 0 0.8vh;
-      }
-
-
-  </style>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="musicbox">
@@ -140,35 +16,408 @@
             <img src="image/icon5.png" alt="">
             <div class="main">
                 <div class="info">
-                    <div class="title">说好的幸福呢</div>
-                    <div class="auther">周杰伦</div>
+                    <div class="title"></div>
+                    <div class="auther"></div>
                     <div class="lyric">
-                        <ul>
-                            <li>你的回话凌乱着</li>
-                            <li>在这个时刻</li>
-                            <li>想起喷泉旁的白鸽</li>
-                            <li>甜蜜散落了</li>
-                            <li>情绪莫名的拉扯</li>
-                        </ul>
+                        <ul></ul>
                     </div>                    
                 </div>
 
                 <div class="progress">
                     <div class="bar">
                         <div class="progress-total"></div>
-                        <div class="progress-now"></div>
+                        <div class="progress-now">
+                            <img src="image/icon.png" alt="">
+                        </div>
+                        
                     </div>
                     <div class="time">0:00</div>
                 </div>
                 <div class="control">
-                    <i class="iconfont icon-love"></i>
-                    <i class="iconfont icon-pre"></i>
-                    <i class="iconfont icon-play"></i>
-                    <i class="iconfont icon-next"></i>
-                    <i class="iconfont icon-share"></i>
+                    <div class="menu">
+                        <i class="iconfont icon-menu"></i>
+                        <ul></ul>
+                    </div>
+                    <span class="pre"><i class="iconfont icon-pre"></i></span>
+                    <span class="play"><i class="iconfont icon-pause"></i></span>
+                    <span class="next"><i class="iconfont icon-next"></i></span>
+                    <div class="volume">
+                        <i class="iconfont icon-volume"></i>
+                        <div>
+                            <div class="volume-total">
+                                <div class="volume-now"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>        
     </div>
+    <!--<audio id="music" src="http://cloud.hunger-valley.com/music/玫瑰.mp3">你的浏览器不支持喔！</audio>-->
+    <script src="jq/jquery-3.2.1.min.js"></script>
+    <script>
+        // //创建或者获取的audio对象，可通过以下两种方式得到
+        // //方法1
+        // var audioObject = document.querySelector('#music')
+        // //方法2
+        // var audioObject = new Audio('http://cloud.hunger-valley.com/music/玫瑰.mp3')
+
+        // //播放
+        // audioObject.play()
+        // audioObject.addEventListener('playing', function(){
+        //     console.log('playing')
+        // })
+
+        // //暂停
+        // audioObject.pause()
+        // audioObject.addEventListener('pause', function(){
+        //     console.log('pause')
+        // })
+
+        // //设置或者获取自动播放状态
+        // audioObject.autoPlay = true //设置为自动播放，下次更换 audioObject.src 后会自动播放音乐
+        // audioObject.autoplay = false //设置不自动播放
+
+        // //设置或者获取音乐地址
+        // audioObject.src = "http://cloud.hunger-valley.com/music/ifyou.mp3"
+
+        // //设置或者获取音量，最大值为1，0为静音
+        // audioObject.volume = 0.5
+        // audioObject.volume = 1
+        // //当音量改变时触发事件
+        // audioObject.onvolumechange = function(){
+        //     console.log('volumechange')
+        // }
+
+        // //设置或者获取循环状态
+        // audioObject.loop = true
+
+        // //获取音乐长度，单位为秒
+        // audioObject.duration
+
+        // //判断音乐是否播放完毕，只读属性
+        // audioObject.ended
+        // audioObject.addEventListener('ended', function(){
+        //     console.log('ended')
+        // })
+
+        //参考资料：https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement
+        //参考资料：https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
+  
+        // var musicList = [
+        //     {
+        //         src: 'http://cloud.hunger-valley.com/music/玫瑰.mp3',
+        //         title: '玫瑰',
+        //         auther: '贰佰'
+        //     },
+        //     {
+        //         src: 'http://cloud.hunger-valley.com/music/ifyou.mp3',
+        //         title: 'IF YOU',
+        //         auther: 'Big Bang'
+        //     }
+        // ]
+
+        function playMusic(ct){
+            this.ct = ct
+            this.init()
+            this.bind()
+            this.getMusic()
+        } 
+        playMusic.prototype.init = function(){
+            this.preBtn = this.ct.find('.control .pre')
+            this.playBtn = this.ct.find('.control .play')
+            this.nextBtn = this.ct.find('.control .next')
+            this.titleNode = this.ct.find('.info .title')
+            this.autherNode = this.ct.find('.info .auther')
+            this.timeNode = this.ct.find('.progress .time')
+            this.progressBarNode = this.ct.find('.progress .bar')
+            this.progressNowNode = this.ct.find('.progress .progress-now')
+            this.menuBtn = this.ct.find('.control .menu') 
+            this.menuCt = this.ct.find('.control .menu>ul')
+            this.volBtn = this.ct.find('.control .volume')
+            this.volCt = this.ct.find('.control .volume>div')
+            this.volControl = this.ct.find('.control .volume .volume-total')
+            this.lrcCt = this.ct.find('.info .lyric>ul')
+            this.lyric = []
+
+            this.music = new Audio()
+            this.music.autoplay = true  //设置为自动播放，更换 src 后会自动播放音乐
+            this.musicIndex = 0
+            this.musicList = []
+
+            this.shouldUpdate = true
+            this.ontimeupdate()  //ontimeupdate事件在视频/音频当前的播放位置发送改变时触发,通常与currentTime属性一起使用
+        }
+        playMusic.prototype.bind = function(){
+            var _this = this
+            //当拖动播放条的时候，时间跟着变动
+            this.progressBarNode.on('click',function(e){
+                var percent = e.offsetX/parseInt(getComputedStyle(this).width)  //
+                _this.music.currentTime = percent * _this.music.duration
+                _this.progressNowNode.css('width','percent*100+'%'') 
+            })
+            //点击播放按钮开始播放或者暂停  
+            this.playBtn.on('click',function(){  
+                var icon = this.querySelector('.iconfont')  
+                if(icon.classList.contains('icon-play')){  //contains 若有play返回ture，若没有返回false
+                    _this.music.play()
+                }else{
+                    _this.music.pause()
+                }
+                icon.classList.toggle('icon-play')  //图标切换
+                icon.classList.toggle('icon-pause')
+            })
+            //播放下一首
+            this.nextBtn.on('click',function(){
+                _this.loadNextMusic() 
+            })
+            //播放上一首
+            this.preBtn.on('click',function loadLastMusic(){
+                _this.musicIndex--
+                _this.musicIndex = (_this.musicIndex + _this.musicList.length)%_this.musicList.length
+                _this.loadMusic(_this.musicList[_this.musicIndex])
+            })
+            //音乐播放完了会播下一首
+            this.music.onended = function(){
+                _this.loadNextMusic() 
+            }
+            //音乐在播放的时候更新时间
+            this.music.onplaying = function(){
+                timer = setInterval(function(){
+                    _this.updateProgress()   //每一秒更新一次播放时间
+                },1000)
+                console.log('play')
+            }
+            //音乐暂停了，停止更新时间
+            this.music.onpause = function(){
+                timer = setInterval(function(){
+                    _this.updateProgress()   //每一秒更新一次播放时间
+                },1000)
+                clearInterval(timer)
+                console.log('pause')
+            }
+            //点击菜单名称获取相应的歌曲
+            this.menuCt.on('click',function(e){        
+                if(e.target.tagName.toLowerCase()!=='li') return;      //若点击的不是li标签，直接return
+                var channelId = ($(e.target).attr('data-channel-id'))
+                _this.getMusic(channelId)
+            })
+            //获取歌单分类数据
+            this.menuBtn.on('click',function(){
+                _this.get('http://api.jirengu.com/fm/getChannels.php', {}, function(ret){
+                    _this.renderMenu(ret.channels)
+                })
+                _this.menuCt.toggle(300) //切换隐藏 显示状态
+            })
+            //调节音量
+            this.volBtn.on('click',function(){
+                _this.volCt.toggle(300)
+            })
+            this.volControl.on('click',function(e){
+                var position = e.pageY - $(this).offset().top  //获取点击音量栏的高度,从上往下1-110
+                var height =  (100-position + '%')
+
+                $('.volume-now').css('height',height)
+
+                if(position < 40){
+                    _this.music.volume = 1
+                    _this.volBtn.find('.iconfont').addClass('icon-volume').removeClass('icon-volstop')
+                }else  if(40 <= position < 100){
+                    _this.music.volume = 0.5
+                    _this.volBtn.find('.iconfont').addClass('icon-volume').removeClass('icon-volstop')
+                }
+                if(100 < position){
+                    _this.music.volume = 0
+                    _this.volBtn.find('.iconfont').addClass('icon-volstop').removeClass('icon-volume')
+                }
+
+            })
+        }
+//下一首音乐        
+        playMusic.prototype.loadNextMusic = function(){
+            this.musicIndex++
+            this.musicIndex = this.musicIndex % this.musicList.length
+            this.loadMusic(this.musicList[this.musicIndex])             
+        }
+//把获取到的歌单数据添加进html
+        playMusic.prototype.renderMenu = function(channels){  
+            var html = channels.map(function(channel){
+                return '<li data-channel-id="' + channel.channel_id + '">' + channel.name + '</li>'
+            }).join('')
+            this.menuCt.append(html)
+        }
+        playMusic.prototype.getMusic = function(channels){
+            var _this = this
+            _this.musicList  = []
+            for(var i=0;i<10;i++){	
+                this.get('https://jirenguapi.applinzi.com/fm/getSong.php',{channel:channels},function(ret){
+                   var addmusic = [{
+                        'sid':ret.song[0].sid,
+                        'src':ret.song[0].url,
+                        'title':ret.song[0].title,
+                        'auther':ret.song[0].artist,
+                        'pic':ret.song[0].picture,
+                        'lrc':ret.song[0].lrc
+                    }]
+                    if(addmusic[0].auther == null) return  //验证数据是否获取到
+                    _this.musicList.push(addmusic[0])	  //把歌曲信息添加到musicList中
+
+                   return _this.musicList
+                })
+            }
+            setTimeout(function(){
+                var playindex = 0
+                _this.loadMusic(_this.musicList[playindex])
+            },1000)
+        }
+//播放音乐
+        playMusic.prototype.loadMusic = function(songObj){
+            this.music.src = songObj.src
+            this.titleNode.html(songObj.title)
+            this.autherNode.html(songObj.auther)
+            this.getLrc(songObj.sid)
+        }
+//获取歌词
+        playMusic.prototype.getLrc = function(sid){
+            let _this = this;
+            this.get('https://jirenguapi.applinzi.com/fm/getLyric.php',{sid:sid},function(ret){
+                clearInterval(lyricClock)
+                _this.decodeLrc(ret.lyric)
+
+                var lyricClock = -2
+                var curLrcNum = 0
+                lyricClock = setInterval(function(){
+                    curLrcNum = _this.scrollLyric(curLrcNum);
+                    if(curLrcNum > _this.lyric.length-1){
+                        clearInterval(lyricClock);
+                    }
+                }, 20);
+            })
+        }
+//解码歌词
+        playMusic.prototype.decodeLrc = function(lrc){
+            var lrcArr = lrc.split('\n')
+            var result = []
+            lrcArr.forEach(function(element) {
+                var lrcObj = {}
+                var lrcTime = element.match(/\[(?:\d+:)\d+.\d+]/g)  //[00:00.00]
+                var lrcContent = element.match(/\][^\[].*/g)    // ]单句歌词
+                if(lrcTime !== null){
+                    lrcTime.forEach(function(ele){
+                        var min = 0, 
+                            sec = 0, 
+                            secTime = 0
+                        min = ele.match(/\[\d+:/)[0].slice(1,3)   //00
+                        sec = ele.match(/\:\d+.\d+/)[0].slice(1,6)  //02
+                        secTime = parseInt(min)*60 + parseFloat(sec)  
+                        if(lrcContent !== null){
+                            lrcObj.time = secTime
+                            lrcObj.content = lrcContent[0].slice(1,lrcContent[0].length);
+                        }
+                    })
+                }
+                if(lrcObj.hasOwnProperty('time') && lrcObj.time !== 0.01){
+                    result.push(lrcObj);
+                }
+            }, lrcArr)
+
+            this.lyric = result
+            this.lyric.sort(function(a,b){
+                return a.time-b.time;
+            })
+            this.renderLrc(this.lyric)         
+        }
+//渲染歌词
+        playMusic.prototype.renderLrc = function(lrc){
+            var _this = this
+            this.lrcCt.empty();
+            for(var i=0;i<lrc.length;i++){
+                this.lrcCt.append($('<li>'+lrc[i].content+'</li>'));
+            }
+        }
+//歌词滚动
+        playMusic.prototype.scrollLyric = function(curLrcNum){
+            var _this = this
+            var time = _this.music.currentTime
+            if(this.lyric[curLrcNum+1]){   //若第二句是有歌词的才开始滚动
+                if(time < this.lyric[curLrcNum+1].time && time >= this.lyric[curLrcNum].time){  //当播放时间小于歌词出现时间，curLrcNum不变动
+                    return curLrcNum
+                }
+                else if(time >= this.lyric[curLrcNum+1].time){  //当播放时间大于歌词出现的时间
+                    curLrcNum++
+                    this.renderScrollLyric(curLrcNum)
+                }
+                else{
+                    if(curLrcNum < 1){
+                        return curLrcNum
+                    }
+                    curLrcNum--
+                    this.renderScrollLyric(curLrcNum)
+                }
+            }
+            return curLrcNum;
+        }
+        playMusic.prototype.renderScrollLyric = function(curLrcNum){
+            this.lrcCt.children('li').removeClass('current-line');
+            this.lrcCt.children('li').eq(curLrcNum).addClass('current-line')
+            //单行歌词的高度
+            var lineHeight = this.lrcCt.children('li').eq(0).outerHeight()+8
+            //第一行歌词顶端到当前歌词的距离
+            var curOffenset = lineHeight*(curLrcNum+1) + $('.current-line').outerHeight(true)/2
+            //整篇歌词的实际高度
+            var lrcLength = $('.current-line').outerHeight(true)*this.lyric.length
+            //显示歌词的可见窗口的高度
+            var height = this.lrcCt.height()
+
+            if(curOffenset>(height/2) && lrcLength-curOffenset > height/2){
+                this.lrcCt.scrollTop(curOffenset - height/2);
+            }
+            else if(curOffenset<=(height/2)){
+                this.lrcCt.scrollTop(0)
+            }
+            else{
+                this.lrcCt.scrollTop(lrcLength - height)
+            }            
+        }
+//ajax
+        playMusic.prototype.get = function(url,data,callback,dataType){
+            url += "?" +Object.keys(data).map(function(key){
+                return key + '=' + data[key]
+            }).join('&')
+            var xhr = new XMLHttpRequest()
+            xhr.responseType = dataType || "json"
+            xhr.onload = function(){
+                callback(xhr.response)
+            }
+            xhr.open('GET',url,true)
+            xhr.send()
+        }
+//当currentTime更新时会触发timeupdate事件，这个事件的触发频率由系统决定，但是会保证每秒触发4-66次（前提是每次事件处理不会超过250ms）
+        playMusic.prototype.ontimeupdate = function(){
+            var _this = this
+            if(_this.shouldUpdate){
+                _this.updateProgress()
+                _this.shouldUpdate = false
+                console.log('update')
+
+                setTimeout(function(){
+                    _this.shouldUpdate = true
+                },1000)
+            }  
+        }
+//获取当前播放到的时间
+        playMusic.prototype.updateProgress = function(){    
+            var percent = (this.music.currentTime/this.music.duration)*100+'%'    //	currentTime当前播放时间，duration总长度时间
+            this.progressNowNode.css('width',percent)     //进度条
+
+            var minutes = parseInt(this.music.currentTime/60)
+            var seconds = parseInt(this.music.currentTime%60) + ''
+            seconds = seconds.length == 2? seconds : '0' + seconds
+
+            this.timeNode.html(minutes + ':' + seconds) 
+        }
+
+        new playMusic($('.music'))
+    </script>
 </body>
 </html>
