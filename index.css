@@ -11,7 +11,6 @@ ul,li{
     left: 0;
     background: url(image/2.jpg) center center no-repeat;
     background-size: cover;
-
     display: flex;
     justify-content: center;
     align-items: center;     
@@ -23,26 +22,47 @@ ul,li{
     align-items: center;
     width: 36vh;
     position: relative;
-    top:12vh;
+}
+.music .rotate{
+    animation: play 8s linear infinite;
+}
+@-webkit-keyframes play {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
 }
 .cd{
-    width: 36vh;
-    height: 36vh;
+    min-width: 36vh;
+    min-height: 36vh;
     border-radius: 50%;
     background: url(image/icon2.png) center center no-repeat;
     background-size: 100%;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top:10vh;
+}
+.cd>img{
+    border-radius: 50%;
+    width: 13vh;
+    height: 13vh;
 }
 .music>img{
     z-index: 1;
     position: relative;
-    bottom:10vh;
     left:13vh;
 }
 .main{
     width: 100%;
     padding: 3vh;
-    padding-top:20vh;
+    padding-top:15vh;
     background: #D9DADF; 
     border-radius: 1.5vh;
     box-shadow: 0vh 0.5vh 1vh 0.2vh #3f357f;
@@ -50,7 +70,7 @@ ul,li{
     font-family: "Microsoft YaHei";
 
     position: relative;
-    bottom:28vh;
+    bottom:14vh;
 }
 .main .info{
     display: flex;
@@ -61,6 +81,11 @@ ul,li{
     font-size:2.2vh;
     font-weight: 500;
     margin-bottom: 0.8vh;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
 }
 .main .info .auther{
     font-size: 1.5vh;
