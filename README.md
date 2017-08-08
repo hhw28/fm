@@ -1,6 +1,6 @@
 
 ## 音乐播放器
-音乐是学习路上最好的伙伴，该播放器用组件化思路封装的
+音乐是学习路上最好的伙伴，一个简单的网页音乐播放器， 使用了HTML、CSS、JQuery、JavaScript、Ajax相关技术，对chrome浏览器友好支持，不兼容IE9以及更早版本的IE浏览器，请见谅
 
 ## 预览地址
 https://hhw28.github.io/fm/index.html

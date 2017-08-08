@@ -205,7 +205,7 @@
             })
             //获取歌单分类数据
             this.menuBtn.on('click',function(){
-                _this.get('http://api.jirengu.com/fm/getChannels.php', {}, function(ret){
+                _this.get('https://jirenguapi.applinzi.com/fm/getChannels.php', {}, function(ret){
                     _this.renderMenu(ret.channels)
                 })
                 _this.menuCt.toggle(300) //切换隐藏 显示状态
