@@ -87,11 +87,12 @@ ul,li{
     font-size:1vh;
     text-align: center;
     color: #c0c3d5;
+    overflow:hidden;
+    height: 400px;
 }
 .main .info .lyric>ul{
-    height: 400px;
-    overflow:hidden;
-    /* transform: translateY(11px) */
+    transform: translateY(0px);
+    transition-duration:0.5s;
 }
 .main .info .lyric li{
     margin: 1vh;
@@ -119,7 +120,7 @@ ul,li{
     position: relative;
 }
 .progress .progress-now>img{
-    margin-left:95%; 
+    margin-left:100%; 
     width: 3vh;
     position: relative;
     bottom: 1.1vh;

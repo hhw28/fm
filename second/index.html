@@ -359,28 +359,38 @@
                     this.renderScrollLyric(curLrcNum)
                 }
             }
-            return curLrcNum;
+            return curLrcNum
         }
         playMusic.prototype.renderScrollLyric = function(curLrcNum){
             this.lrcCt.children('li').removeClass('current-line');
             this.lrcCt.children('li').eq(curLrcNum).addClass('current-line')
-            //单行歌词的高度
+            
             var lineHeight = this.lrcCt.children('li').eq(0).outerHeight()+8
-            //第一行歌词顶端到当前歌词的距离
-            var curOffenset = lineHeight*(curLrcNum+1) + $('.current-line').outerHeight(true)/2
-            //整篇歌词的实际高度
-            var lrcLength = $('.current-line').outerHeight(true)*this.lyric.length
-            //显示歌词的可见窗口的高度
-            var height = this.lrcCt.height()
+            // console.log('单行歌词的高度:'+lineHeight)
+            var currentLineHeight = $('.current-line').outerHeight(true)/2
+            // console.log('当前高亮的歌词高度:'+currentLineHeight)
+            var curOffenset = lineHeight*(curLrcNum) + currentLineHeight
+            // console.log(curLrcNum)
+            // console.log('第一行歌词到当前歌词的距离:'+curOffenset)  
+            var lrcLength = this.lrcCt.height()
+            // console.log('整篇歌词的实际高度:'+lrcLength)     
+            var height = this.lrcCt.parent().height()
+            // console.log('显示歌词的可见窗口的高度:'+height)
 
-            if(curOffenset>(height/2) && lrcLength-curOffenset > height/2){
-                this.lrcCt.scrollTop(curOffenset - height/2)
+//当演唱到的那句高度在窗口的一半位置，歌词向上滚动一格
+            if(curOffenset>(height/2) && lrcLength-lineHeight*(curLrcNum-6)>height){  
+                console.log(lrcLength)
+                console.log(lineHeight*(curLrcNum-6))
+                console.log(lrcLength-lineHeight*(curLrcNum-6)+'大于'+height) 
+                this.lrcCt.css('transform','translateY(-'+lineHeight*(curLrcNum-6)+'px)')
             }
             else if(curOffenset<=(height/2)){
-                this.lrcCt.scrollTop(0)
+                this.lrcCt.css('transform','translateY(0px)')
             }
             else{
-                this.lrcCt.scrollTop(lrcLength - height)
+                console.log(1)
+                console.log('歌词总高度减去窗口高度'+(lrcLength - height))
+                this.lrcCt.css('transform','translateY(-'+(lrcLength-height+currentLineHeight+3)+'px)')
             }            
         }
 //ajax
